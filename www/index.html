@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+-->
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <!-- Color theme for statusbar -->
+  <!-- <meta name="theme-color" content="#2196f3"> -->
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Your app title -->
+  <title>My App</title>
+  <!-- Path to Framework7 Library CSS -->
+
+  <link rel="stylesheet" href="lib/framework7/framework7-bundle.css">
+  <!-- Path to icons -->
+  <link rel="stylesheet" href="css/indexs.css">
+  <!--  link rel="stylesheet" href="style.css">-->
+  <link rel="stylesheet" href="css/icons.css">
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body>
+  <div id="app">
+    <!-- Statusbar overlay -->
+    <div class="statusbar"></div>
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+
+      <!-- Top Navbar -->
+      <div class="navbar">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+          <div class="left"><i class="icon icon-back"></i></div>
+          <div class="title">Page Title</div>
+          <div class="right"><i class="icon icon-forward"></i></div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar toolbar-bottom">
+        <div class="toolbar-inner">
+          <!-- Toolbar links -->
+          <a href="#" class="link">Link 1</a>
+          <a href="#" class="link">Link 2</a>
+        </div>
+      </div>
+
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="index" class="page">
+        <!-- Scrollable page content -->
+        <div class="page-content">
+          <div class="block">
+            <div class="wrapper">
+              <div class="typing-demo" style="color:black;"> Unplogged App....</div>
+            </div>
+            <div class="mail" style="text-align: center; display: center; background-color: black; color: white;" ;>
+              <input type="text" id="email" placeholder="Email">
+              <input type="password" id="pass" placeholder="Contraseña">
+              <input type="button" value="inicio" id="Inicio">
+              <a href="/about/">No tienes cuenta? Registrate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card-content-padding">
+        <p>Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web
+          apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps
+          tool to show working app prototype as soon as possible in case you need to.</p>
+        <p>The main approach of the Framework7 is to give you an opportunity to create iOS and Android
+          (Material) apps with HTML, CSS and JavaScript easily and clear. Framework7 is full of freedom. It
+          doesn't limit your imagination or offer ways of any solutions somehow. Framework7 gives you freedom!
+        </p>
+        <p>Framework7 is not compatible with all platforms. It is focused only on iOS and Android (Material) to
+          bring the best experience and simplicity.</p>
+        <p>Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or
+          Capacitor) or web app that looks like and feels as great native iOS or Android (Material) apps.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card card-expandable">
+    <div class="card-content">
+      <div class="bg-color-yellow" style="height: 300px">
+        <div class="card-header text-color-black display-block">Framework7<br />
+          <small style="opacity: 0.7">Build Mobile Apps</small>
+        </div>
+        <a href="#" class="link card-close card-opened-fade-in color-black"
+          style="position: absolute; right: 15px; top: 15px">
+          <i class="icon f7-icons">xmark_circle_fill</i>
+        </a>
+      </div>
+
+
+
+      <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+
+
+
+      <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBYA8gCHdddHL-iinVWumwh5JYer1IzkmY",
+          authDomain: "unpluggedapp-88b80.firebaseapp.com",
+          projectId: "unpluggedapp-88b80",
+          storageBucket: "unpluggedapp-88b80.appspot.com",
+          messagingSenderId: "871679785426",
+          appId: "1:871679785426:web:8a07271d5db8370480b00b"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+
+
+
+
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="lib/framework7/framework7-bundle.min.js"></script>
+      <!--<script type="text/javascript" src="lib/framework7/framework7.js"></script>-->
+      <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+
+</html>
