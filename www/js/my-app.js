@@ -37,6 +37,12 @@ $$(document).on('page:init', function (e) {
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
 
+  $$("#hrefRegistro").on("click", fnChange);
+
+  function fnChange() {
+    mainView.router.navigate('/about/')
+  }
+
   $$("#Inicio").on("click", fnLog);
 
   function fnLog() {
@@ -70,16 +76,17 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
 
 
   function fnCrear() {
-    let email = $$('#email').val();
-    let password = $$('#pass').val();
-
+    let email = $$('#EMAIL').val();
+    let password = $$('#PASS').val();
+    console.log(email);
+    console.log(password);
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
         console.log("Bienvenid@!!! " + email);
         // ...
-        mainView.router.navigate('/index/');
+        mainView.router.navigate('/log/');
 
       })
       .catch((error) => {
