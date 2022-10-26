@@ -78,6 +78,9 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
   function fnCrear() {
     let email = $$('#EMAIL').val();
     let password = $$('#PASS').val();
+    let nomb = $$('#NOMBRE').val();
+    let apell =$$('#APELLIDO').val();
+
     console.log(email);
     console.log(password);
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -86,7 +89,35 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
         var user = userCredential.user;
         console.log("Bienvenid@!!! " + email);
         // ...
-        mainView.router.navigate('/log/');
+
+        // base de datos
+        var db = firebase.firestore();
+        /*
+        var data = {
+          nombre: "luciano",
+          mail: "lucianoaronson@gmail.com",
+          rol: "developer"
+        };
+        */
+        var miId = email;
+        var data = { nombre: nomb, apellido: apell};
+
+
+        db.collection("personas").doc(miId).set(data)
+          .then(function (docRef) {
+            //console.log("ok con el ID: " + docRef.id):
+            mainView.router.navigate('/log/');
+          })
+
+          .catch(function (error) {
+            console.log("error: " + error);
+          });
+
+
+
+
+
+       
 
       })
       .catch((error) => {
@@ -133,6 +164,10 @@ function fnReg() {
 
   console.log(Email);
   console.log(Psw);
+
+
+
+
   /*
       email="men@tira.com";
       psw="12345678";
@@ -152,18 +187,4 @@ function fnReg() {
 
 
 //=====================Base de Datos================
-var db = firebase.firestore();
-var dato = {
-  nombre: "luciano",
-  mail: "lucianoaronson@gmail.com",
-  rol: "developer"
-};
 
-db.collection("personas").add(data)
-  .then(function (docRef) {
-    console.log("ok con el ID: " + docRef.id)
-  })
-
-  .catch(function (error) {
-    console.log("error: " + error);
-  });
