@@ -16,6 +16,7 @@ var app = new Framework7({
   routes: [
     { path: '/about/', url: 'about.html', },
     { path: '/log/', url: 'log.html', },
+    { path: '/Pedidofinal/', url: 'Pedidofinal.html', },
   ]
   // ... other parameters
 });
@@ -137,7 +138,11 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
   }
 })
 
+$$(document).on('page:init', '.page[data-name="log"]', function (e) { 
 
+  $$("#btnNuevoPedido").on("click", fnp);
+
+});
 
 
 /*
@@ -175,6 +180,26 @@ function fnReg() {
   // 
 
 
+
+}
+
+
+
+
+
+var fnpnom,fnpedido,fnpnum;
+
+
+function fnp() {
+
+  fnpnom = $$('#pdfnombre').val();
+  fnpedido = $$('#pdf').val();
+  fnpnum = $$('#pdfnum').val();
+
+console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
+
+
+  mainView.router.navigate('/Pedidofinal/');
 
 }
 
