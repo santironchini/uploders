@@ -19,9 +19,9 @@
     </div>
       </div>
     -->
+    
 
-
-      <div class="page" data-name="log">
+      <div  class="page" data-name="log">
         <!-- <di  v class="navbar">
             <div class="navbar-inner sliding">
             <div class="left">
@@ -32,7 +32,7 @@
             </div>
             </div> 
         </div>-->
-        <div class="page-content" style=" align-content: center">
+        <div class="page-content" style="align-content: center">
           
   
   
@@ -180,20 +180,49 @@
 
           </div> 
           
-          <form class="list" id="my-form">
+          <form class="list"  id="my-form">
             <ul>
               <li>
-                <div class="item-content item-input">
+                <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
                   <div class="item-inner">
                     <div class="item-title item-label">Nombre</div>
                     <div class="item-input-wrap">
-                      <input type="text" id="pdfnombre" name="name" placeholder="Your name" />
+                      <input type="text" id="pdfnombre" name="name" placeholder="Ingrese un nombre" />
                     </div>
                   </div>
                 </div>
-                <div class="item-content item-input">
+                <li>
+                  <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Pedido</div>
+                      <div class="item-input-wrap">
+                        <select idame="plato">
+                          <option >Hamburgesa</option>
+                          <option >Fideos</option>
+                          <option >Tortilla</option>
+                          <option  >Ensalada</option>
+                          <option >lasaña</option>
+                          <option  >Garbanzos</option>
+                          <option >---</option>
+                          <option  >----</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Cantidad</div>
+                      <div class="item-input-wrap">
+                        <input type="Num" name="Num"  id="pdfcan" placeholder="Numero de Telefono" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
                   <div class="item-inner">
-                    <div class="item-title item-label">Pedido</div>
+                    <div class="item-title item-label">Comentario (Opcional)</div>
                     <div class="item-input-wrap">
                       <input type="text" id="pdf" name="Pedido" placeholder="Pedido" />
                     </div>
@@ -201,7 +230,7 @@
                 </div>
               </li>
               <li>
-                <div class="item-content item-input">
+                <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
                   <div class="item-inner">
                     <div class="item-title item-label">Numero de Telefono</div>
                     <div class="item-input-wrap">
@@ -211,19 +240,19 @@
                 </div>
               </li>
               <li>
-                <div class="item-content item-input">
+                <div class="item-content item-input" style="background-color: rgb(102, 4, 4);">
                   <div class="item-inner">
                     <div class="item-title item-label">Bebida</div>
                     <div class="item-input-wrap">
-                      <select name="gender">
-                        <option value="male" selected="selected">Agua</option>
-                        <option value="female">Soda</option>
-                        <option value="male" selected="selected">Cocacola</option>
-                        <option value="female">Seven up</option>
-                        <option value="male" selected="selected">Acuario Naranja</option>
-                        <option value="female">Acuarius Manzana</option>
-                        <option value="male" selected="selected">Paso de los toros</option>
-                        <option value="female">Cerveza Quilmes</option>
+                      <select id="bebida" name="gender">
+                        <option  >Agua</option>
+                        <option >Soda</option>
+                        <option >Cocacola</option>
+                        <option >Seven up</option>
+                        <option  >Acuario Naranja</option>
+                        <option >Acuarius Manzana</option>
+                        <option  >Paso de los toros</option>
+                        <option >Cerveza Quilmes</option>
                       </select>
                     </div>
                   </div>
@@ -232,8 +261,8 @@
             </ul>
           </form>
           <div class="block block-strong row">
-            <div class="col"><a class="button button-fill convert-form-to-data" id="btnNuevoPedido">Finalizar pedido</a></div>
-            <div class="col"><a class="button button-fill fill-form-from-data" href="#">Fill Form</a></div>
+            <div class="col"><a class="button button-fill convert-form-to-data" style="background-color: #f05912;" id="btnNuevoPedido">Finalizar pedido</a></div>
+            <div class="col"><a class="button button-fill fill-form-from-data" style="background-color: #f05912;" href="#">Fill Form</a></div>
           </div>
         </div>
 
