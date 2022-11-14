@@ -213,3 +213,125 @@ console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
 
 //=====================Base de Datos================
 
+
+
+/* var db = firebase.firestore();
+
+
+var data1 = {  nombre: "Hamb1",   precio: 900,
+  descripcion: "1 medallon, cebolla, queso, tomate, lechuga ",
+  img: "imgham1.jpg"
+};
+var miId = 1;
+
+db.collection("productos").doc(miId).set(data1);
+
+
+var data2 = {  nombre: "Hamb2",   precio: 1200,
+  descripcion: "2 medallones, huevo, cebolla, queso, tomate, lechuga, jamon, panceta ",
+  img: ".jpg"
+};
+var miId = 2;
+
+db.collection("productos").doc(miId).set(data2);
+
+
+
+var data3 = {  nombre: "Fideos",   precio: 800,
+  descripcion: "fideos con salsa casera",
+  img: ".jpg"
+};
+var miId = 3;
+
+db.collection("productos").doc(miId).set(data3);
+
+
+var data4 = {  nombre: "tortilla",   precio: 600,
+  descripcion: "tortilla con JyQ y cebolla",
+  img: ".jpg"
+};
+var miId = 4;
+db.collection("productos").doc(miId).set(data4);
+
+
+var data5 = {  nombre: "milanesa",   precio: 800,
+  descripcion: "Milanesa con papas fritas",
+  img: ".jpg"
+};
+var miId = 5;
+
+db.collection("productos").doc(miId).set(data5);
+
+
+var data6 = {  nombre: "milanesa2",   precio: 800,
+  descripcion: "Milanesa con pure",
+  img: ".jpg"
+};
+var miId = 6;
+
+db.collection("productos").doc(miId).set(data6);
+
+var data7 = {  nombre: "ñoquis",   precio: 800,
+  descripcion: "ñoqui con salsa mixta",
+  img: ".jpg"
+};
+var miId = 7;
+
+db.collection("productos").doc(miId).set(data7);
+
+
+var data8 = {  nombre: "guiso",   precio: 800,
+  descripcion: "quiso de lentejas",
+  img: ".jpg"
+};
+var miId = 8;
+
+db.collection("productos").doc(miId).set(data8);
+
+
+
+var data9 = {  nombre: "pollo",   precio: 800,
+  descripcion: "pollo con papas a la portuguesa",
+  img: ".jpg"
+};
+var miId = 9;
+
+db.collection("productos").doc(miId).set(data9);
+
+
+
+var data10 = {nombre:"ensalada", precio:500, 
+tipo:"vegano",
+descripcion:"ensalada de tomate, lechuga, choclo, arroz y queso",
+img:".jpg",
+};
+ 
+var miId = 10;
+
+db.collection("productosVeganos").doc(miId).set(data10);
+
+
+
+var data11 = {nombre:"lasaña", precio:500, 
+tipo:"vegano",
+descripcion:"lasaña de espinaca con queso y jugo de tomate",
+img:".jpg",
+};
+ 
+var miId = 11;
+
+db.collection("productosVeganos").doc(miId).set(data11);
+
+
+
+var data12 = {nombre:"wook", precio:500, 
+tipo:"vegano",
+descripcion:"wook de verduras salteadas, cebolla, morron, zanahoria, berenjenas, brocoli",
+img:".jpg",
+};
+ 
+var miId = 12;
+
+db.collection("productosVeganos").doc(miId).set(data13);
+
+*/
