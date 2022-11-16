@@ -26,6 +26,8 @@ var mainView = app.views.create('.view-main');
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function () {
   console.log("Device is ready!");
+
+  
 });
 
 // Option 1. Using one 'page:init' handler for all pages
@@ -37,6 +39,9 @@ $$(document).on('page:init', function (e) {
 // Option 2. Using live 'page:init' event handlers for each page
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
+
+  traerDatos();
+  creaProductos();
 
   $$("#hrefRegistro").on("click", fnChange);
 
@@ -212,126 +217,159 @@ console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
 
 
 //=====================Base de Datos================
+function traerDatos() {
 
 
 
-/* var db = firebase.firestore();
+  var db = firebase.firestore();
+  var perRef = db.collection("productos");
+  perRef.get()
+  .then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc){
+      console.log("data:" + doc.data().nombre)
+      console.log("data:" + doc.data().id)
+      console.log("data:" + doc.data().descripcion)
+      console.log("data:" + doc.data().precio)
+    })
+  }
+  
+  
+  )
+  
+  
 
 
+}
+
+
+
+
+function creaProductos() {
+
+console.log("crearproductos")
+ var db = firebase.firestore();
+
+/*
 var data1 = {  nombre: "Hamb1",   precio: 900,
   descripcion: "1 medallon, cebolla, queso, tomate, lechuga ",
-  img: "imgham1.jpg"
+  img: "img/hamb1.jpg"
 };
-var miId = 1;
+var miId1 = "1";
 
-db.collection("productos").doc(miId).set(data1);
+db.collection("productos").doc(miId1).set(data1);
 
 
 var data2 = {  nombre: "Hamb2",   precio: 1200,
   descripcion: "2 medallones, huevo, cebolla, queso, tomate, lechuga, jamon, panceta ",
-  img: ".jpg"
+  img: "img/.jpg"
 };
-var miId = 2;
+var miId2 = "2";
 
-db.collection("productos").doc(miId).set(data2);
+db.collection("productos").doc(miId2).set(data2);
 
 
 
 var data3 = {  nombre: "Fideos",   precio: 800,
   descripcion: "fideos con salsa casera",
-  img: ".jpg"
+  img: "img/fideos.jpg"
 };
-var miId = 3;
+var miId3 = "3";
 
-db.collection("productos").doc(miId).set(data3);
+db.collection("productos").doc(miId3).set(data3);
 
 
 var data4 = {  nombre: "tortilla",   precio: 600,
   descripcion: "tortilla con JyQ y cebolla",
-  img: ".jpg"
+  img: "img/tortilla.jpg"
 };
-var miId = 4;
-db.collection("productos").doc(miId).set(data4);
+var miId4 = "4";
+db.collection("productos").doc(miId4).set(data4);
 
 
 var data5 = {  nombre: "milanesa",   precio: 800,
   descripcion: "Milanesa con papas fritas",
-  img: ".jpg"
+  img: "img/milanesa.jpg"
 };
-var miId = 5;
+var miId5 = "5";
 
-db.collection("productos").doc(miId).set(data5);
+db.collection("productos").doc(miId5).set(data5);
 
 
 var data6 = {  nombre: "milanesa2",   precio: 800,
   descripcion: "Milanesa con pure",
-  img: ".jpg"
+  img: "img/milanesa2.jpg"
 };
-var miId = 6;
+var miId6 = "6";
 
-db.collection("productos").doc(miId).set(data6);
+db.collection("productos").doc(miId6).set(data6);
 
 var data7 = {  nombre: "ñoquis",   precio: 800,
   descripcion: "ñoqui con salsa mixta",
-  img: ".jpg"
+  img: "img/ñoquis.jpg"
 };
-var miId = 7;
+var miId7 = "7";
 
-db.collection("productos").doc(miId).set(data7);
+db.collection("productos").doc(miId7).set(data7);
 
 
 var data8 = {  nombre: "guiso",   precio: 800,
   descripcion: "quiso de lentejas",
-  img: ".jpg"
+  img: "img/guiso.jpg"
 };
-var miId = 8;
+var miId8 = "8";
 
-db.collection("productos").doc(miId).set(data8);
+db.collection("productos").doc(miId8).set(data8);
 
 
 
 var data9 = {  nombre: "pollo",   precio: 800,
   descripcion: "pollo con papas a la portuguesa",
-  img: ".jpg"
+  img: "img/pollo.jpg"
 };
-var miId = 9;
+var miId9 = "9";
 
-db.collection("productos").doc(miId).set(data9);
+db.collection("productos").doc(miId9).set(data9);
 
 
 
 var data10 = {nombre:"ensalada", precio:500, 
 tipo:"vegano",
 descripcion:"ensalada de tomate, lechuga, choclo, arroz y queso",
-img:".jpg",
+img:"img/ensalada.jpg"
 };
  
-var miId = 10;
+var miId10 = "10";
 
-db.collection("productosVeganos").doc(miId).set(data10);
+db.collection("productosVeganos").doc(miId10).set(data10);
 
 
 
 var data11 = {nombre:"lasaña", precio:500, 
 tipo:"vegano",
 descripcion:"lasaña de espinaca con queso y jugo de tomate",
-img:".jpg",
+img:"img/lasaña.jpg",
 };
  
-var miId = 11;
+var miId11 = "11";
 
-db.collection("productosVeganos").doc(miId).set(data11);
+db.collection("productosVeganos").doc(miId11).set(data11);
 
 
 
 var data12 = {nombre:"wook", precio:500, 
 tipo:"vegano",
 descripcion:"wook de verduras salteadas, cebolla, morron, zanahoria, berenjenas, brocoli",
-img:".jpg",
+img:"img/wook.jpg",
 };
  
-var miId = 12;
+var miId12 = "12";
 
-db.collection("productosVeganos").doc(miId).set(data13);
+db.collection("productosVeganos").doc(miId12).set(data12);
 
 */
+
+}
+
+
+
+
