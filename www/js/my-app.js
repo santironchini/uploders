@@ -40,8 +40,8 @@ $$(document).on('page:init', function (e) {
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
 
-  traerDatos();
-  creaProductos();
+  
+  //creaProductos();
 
   $$("#hrefRegistro").on("click", fnChange);
 
@@ -144,7 +144,7 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
 })
 
 $$(document).on('page:init', '.page[data-name="log"]', function (e) { 
-
+  traerDatos();
   $$("#btnNuevoPedido").on("click", fnp);
 
 });
@@ -219,7 +219,8 @@ console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
 //=====================Base de Datos================
 function traerDatos() {
 
-
+  salida = "";
+  salidaVegana = "";
 
   var db = firebase.firestore();
   var perRef = db.collection("productos");
@@ -230,18 +231,91 @@ function traerDatos() {
       console.log("data:" + doc.data().id)
       console.log("data:" + doc.data().descripcion)
       console.log("data:" + doc.data().precio)
+
+
+
+      salida += `
+      <div class="col-30">
+          < <br>
+            <div class="card card-expandable">
+              <div class="card-content">
+                <div
+                  style="height: 300px; background-position: center center; background-image: url('${doc.data().img}');">
+                  <div class="card-header text-color-black display-block">${doc.data().nombre}<br />
+                    <small style="opacity: 0.7">${doc.data().precio}</small>
+
+                  </div>
+                  <a href="#" class="link card-close card-opened-fade-in color-black"
+                    style="position: absolute; right: 15px; top: 15px">
+                    <i class="icon f7-icons">xmark_circle_fill</i>
+                  </a>
+                </div>
+                <div class="card-content-padding">
+                  <p>${doc.data().descripcion}</p>
+
+                </div>
+              </div>
+            </div>
+        </div>
+      
+      
+      
+      `;
+      
+
+
+      
+
+
     })
-  }
-  
-  
-  )
-  
   
 
+    $$("#contProductos").html(salida);
+  
+    var perRef = db.collection("productosVeganos");
+    perRef.get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc){
+        console.log("data:" + doc.data().nombre)
+        console.log("data:" + doc.data().id)
+        console.log("data:" + doc.data().descripcion)
+        console.log("data:" + doc.data().precio)
+        console.log("data:" + doc.data().tipo)
 
-}
+
+        salidaVegana += `
+      <div class="col-30">
+          < <br>
+            <div class="card card-expandable">
+              <div class="card-content">
+                <div
+                  style="height: 300px; background-position: center center; background-image: url('${doc.data().img}');">
+                  <div class="card-header text-color-black display-block">${doc.data().nombre} <br />
+                    <small style="opacity: 0.7">${doc.data().precio}</small>
+
+                  </div>
+                  <a href="#" class="link card-close card-opened-fade-in color-black"
+                    style="position: absolute; right: 15px; top: 15px">
+                    <i class="icon f7-icons">xmark_circle_fill</i>
+                  </a>
+                </div>
+                <div class="card-content-padding">
+                  <p>${doc.data().descripcion}</p>
+
+                </div>
+              </div>
+            </div>
+        </div>
+      `;
+
+  })
+ 
+};
 
 
+
+
+ $$("#contProductosVeganos").html(salidaVegana);
 
 
 function creaProductos() {
@@ -249,7 +323,7 @@ function creaProductos() {
 console.log("crearproductos")
  var db = firebase.firestore();
 
-/*
+
 var data1 = {  nombre: "Hamb1",   precio: 900,
   descripcion: "1 medallon, cebolla, queso, tomate, lechuga ",
   img: "img/hamb1.jpg"
@@ -261,7 +335,7 @@ db.collection("productos").doc(miId1).set(data1);
 
 var data2 = {  nombre: "Hamb2",   precio: 1200,
   descripcion: "2 medallones, huevo, cebolla, queso, tomate, lechuga, jamon, panceta ",
-  img: "img/.jpg"
+  img: "img/hamb2.jpg"
 };
 var miId2 = "2";
 
@@ -366,10 +440,10 @@ var miId12 = "12";
 
 db.collection("productosVeganos").doc(miId12).set(data12);
 
-*/
+
 
 }
 
 
 
-
+  
