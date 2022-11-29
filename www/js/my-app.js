@@ -27,7 +27,7 @@ var mainView = app.views.create('.view-main');
 $$(document).on('deviceready', function () {
   console.log("Device is ready!");
 
-  
+
 });
 
 // Option 1. Using one 'page:init' handler for all pages
@@ -40,7 +40,7 @@ $$(document).on('page:init', function (e) {
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
 
-  
+
   //creaProductos();
 
   $$("#hrefRegistro").on("click", fnChange);
@@ -85,7 +85,7 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
     let email = $$('#EMAIL').val();
     let password = $$('#PASS').val();
     let nomb = $$('#NOMBRE').val();
-    let apell =$$('#APELLIDO').val();
+    let apell = $$('#APELLIDO').val();
 
     console.log(email);
     console.log(password);
@@ -106,7 +106,7 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
         };
         */
         var miId = email;
-        var data = { nombre: nomb, apellido: apell};
+        var data = { nombre: nomb, apellido: apell };
 
 
         db.collection("personas").doc(miId).set(data)
@@ -123,7 +123,7 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
 
 
 
-       
+
 
       })
       .catch((error) => {
@@ -143,8 +143,9 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
   }
 })
 
-$$(document).on('page:init', '.page[data-name="log"]', function (e) { 
+$$(document).on('page:init', '.page[data-name="log"]', function (e) {
   traerDatos();
+  TraerDatosVeganos();
   $$("#btnNuevoPedido").on("click", fnp);
 
 });
@@ -192,7 +193,7 @@ function fnReg() {
 
 
 
-var fnpnom,fnpedido,fnpnum;
+var fnpnom, fnpedido, fnpnum;
 
 
 function fnp() {
@@ -201,7 +202,7 @@ function fnp() {
   fnpedido = $$('#pdf').val();
   fnpnum = $$('#pdfnum').val();
 
-console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
+  console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
 
 
   mainView.router.navigate('/Pedidofinal/');
@@ -220,21 +221,21 @@ console.log("Datos FNP: " + fnpnum + fnpedido + fnpnom)
 function traerDatos() {
 
   salida = "";
-  salidaVegana = "";
+
 
   var db = firebase.firestore();
   var perRef = db.collection("productos");
   perRef.get()
-  .then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc){
-      console.log("data:" + doc.data().nombre)
-      console.log("data:" + doc.data().id)
-      console.log("data:" + doc.data().descripcion)
-      console.log("data:" + doc.data().precio)
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        console.log("data:" + doc.data().nombre)
+        console.log("data:" + doc.data().id)
+        console.log("data:" + doc.data().descripcion)
+        console.log("data:" + doc.data().precio)
 
 
 
-      salida += `
+        salida += `
       <div class="col-30">
           < <br>
             <div class="card card-expandable">
@@ -261,21 +262,21 @@ function traerDatos() {
       
       
       `;
-      
 
-
-      
-
-
+        $$("#contProductos").html(salida);
+      })
     })
-  
+}
 
-    $$("#contProductos").html(salida);
-  
-    var perRef = db.collection("productosVeganos");
-    perRef.get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc){
+function TraerDatosVeganos() {
+
+  salidaVegana = "";
+
+  var db = firebase.firestore();
+  var perRef = db.collection("productosVeganos");
+  perRef.get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
         console.log("data:" + doc.data().nombre)
         console.log("data:" + doc.data().id)
         console.log("data:" + doc.data().descripcion)
@@ -284,161 +285,172 @@ function traerDatos() {
 
 
         salidaVegana += `
-      <div class="col-30">
-          < <br>
-            <div class="card card-expandable">
-              <div class="card-content">
-                <div
-                  style="height: 300px; background-position: center center; background-image: url('${doc.data().img}');">
-                  <div class="card-header text-color-black display-block">${doc.data().nombre} <br />
-                    <small style="opacity: 0.7">${doc.data().precio}</small>
-
+            <div class="col-30">
+                < <br>
+                  <div class="card card-expandable">
+                    <div class="card-content">
+                      <div
+                        style="height: 300px; background-position: center center; background-image: url('${doc.data().img}');">
+                        <div class="card-header text-color-black display-block">${doc.data().nombre} <br />
+                          <small style="opacity: 0.7">${doc.data().precio}</small>
+      
+                        </div>
+                        <a href="#" class="link card-close card-opened-fade-in color-black"
+                          style="position: absolute; right: 15px; top: 15px">
+                          <i class="icon f7-icons">xmark_circle_fill</i>
+                        </a>
+                      </div>
+                      <div class="card-content-padding">
+                        <p>${doc.data().descripcion}</p>
+      
+                      </div>
+                    </div>
                   </div>
-                  <a href="#" class="link card-close card-opened-fade-in color-black"
-                    style="position: absolute; right: 15px; top: 15px">
-                    <i class="icon f7-icons">xmark_circle_fill</i>
-                  </a>
-                </div>
-                <div class="card-content-padding">
-                  <p>${doc.data().descripcion}</p>
-
-                </div>
               </div>
-            </div>
-        </div>
-      `;
+            `;
+        $$("#contProductosVeganos").html(salidaVegana);
+      })
 
-  })
- 
-};
-
+    })
+}
 
 
 
- $$("#contProductosVeganos").html(salidaVegana);
 
 
 function creaProductos() {
 
-console.log("crearproductos")
- var db = firebase.firestore();
+  console.log("crearproductos")
+  var db = firebase.firestore();
 
 
-var data1 = {  nombre: "Hamb1",   precio: 900,
-  descripcion: "1 medallon, cebolla, queso, tomate, lechuga ",
-  img: "img/hamb1.jpg"
-};
-var miId1 = "1";
+  var data1 = {
+    nombre: "Hamb1", precio: 900,
+    descripcion: "1 medallon, cebolla, queso, tomate, lechuga ",
+    img: "img/hamb1.jpg"
+  };
+  var miId1 = "1";
 
-db.collection("productos").doc(miId1).set(data1);
-
-
-var data2 = {  nombre: "Hamb2",   precio: 1200,
-  descripcion: "2 medallones, huevo, cebolla, queso, tomate, lechuga, jamon, panceta ",
-  img: "img/hamb2.jpg"
-};
-var miId2 = "2";
-
-db.collection("productos").doc(miId2).set(data2);
+  db.collection("productos").doc(miId1).set(data1);
 
 
+  var data2 = {
+    nombre: "Hamb2", precio: 1200,
+    descripcion: "2 medallones, huevo, cebolla, queso, tomate, lechuga, jamon, panceta ",
+    img: "img/hamb2.jpg"
+  };
+  var miId2 = "2";
 
-var data3 = {  nombre: "Fideos",   precio: 800,
-  descripcion: "fideos con salsa casera",
-  img: "img/fideos.jpg"
-};
-var miId3 = "3";
-
-db.collection("productos").doc(miId3).set(data3);
-
-
-var data4 = {  nombre: "tortilla",   precio: 600,
-  descripcion: "tortilla con JyQ y cebolla",
-  img: "img/tortilla.jpg"
-};
-var miId4 = "4";
-db.collection("productos").doc(miId4).set(data4);
-
-
-var data5 = {  nombre: "milanesa",   precio: 800,
-  descripcion: "Milanesa con papas fritas",
-  img: "img/milanesa.jpg"
-};
-var miId5 = "5";
-
-db.collection("productos").doc(miId5).set(data5);
-
-
-var data6 = {  nombre: "milanesa2",   precio: 800,
-  descripcion: "Milanesa con pure",
-  img: "img/milanesa2.jpg"
-};
-var miId6 = "6";
-
-db.collection("productos").doc(miId6).set(data6);
-
-var data7 = {  nombre: "ñoquis",   precio: 800,
-  descripcion: "ñoqui con salsa mixta",
-  img: "img/ñoquis.jpg"
-};
-var miId7 = "7";
-
-db.collection("productos").doc(miId7).set(data7);
-
-
-var data8 = {  nombre: "guiso",   precio: 800,
-  descripcion: "quiso de lentejas",
-  img: "img/guiso.jpg"
-};
-var miId8 = "8";
-
-db.collection("productos").doc(miId8).set(data8);
+  db.collection("productos").doc(miId2).set(data2);
 
 
 
-var data9 = {  nombre: "pollo",   precio: 800,
-  descripcion: "pollo con papas a la portuguesa",
-  img: "img/pollo.jpg"
-};
-var miId9 = "9";
+  var data3 = {
+    nombre: "Fideos", precio: 800,
+    descripcion: "fideos con salsa casera",
+    img: "img/fideos.jpg"
+  };
+  var miId3 = "3";
 
-db.collection("productos").doc(miId9).set(data9);
-
-
-
-var data10 = {nombre:"ensalada", precio:500, 
-tipo:"vegano",
-descripcion:"ensalada de tomate, lechuga, choclo, arroz y queso",
-img:"img/ensalada.jpg"
-};
- 
-var miId10 = "10";
-
-db.collection("productosVeganos").doc(miId10).set(data10);
+  db.collection("productos").doc(miId3).set(data3);
 
 
-
-var data11 = {nombre:"lasaña", precio:500, 
-tipo:"vegano",
-descripcion:"lasaña de espinaca con queso y jugo de tomate",
-img:"img/lasaña.jpg",
-};
- 
-var miId11 = "11";
-
-db.collection("productosVeganos").doc(miId11).set(data11);
+  var data4 = {
+    nombre: "tortilla", precio: 600,
+    descripcion: "tortilla con JyQ y cebolla",
+    img: "img/tortilla.jpg"
+  };
+  var miId4 = "4";
+  db.collection("productos").doc(miId4).set(data4);
 
 
+  var data5 = {
+    nombre: "milanesa", precio: 800,
+    descripcion: "Milanesa con papas fritas",
+    img: "img/milanesa.jpg"
+  };
+  var miId5 = "5";
 
-var data12 = {nombre:"wook", precio:500, 
-tipo:"vegano",
-descripcion:"wook de verduras salteadas, cebolla, morron, zanahoria, berenjenas, brocoli",
-img:"img/wook.jpg",
-};
- 
-var miId12 = "12";
+  db.collection("productos").doc(miId5).set(data5);
 
-db.collection("productosVeganos").doc(miId12).set(data12);
+
+  var data6 = {
+    nombre: "milanesa2", precio: 800,
+    descripcion: "Milanesa con pure",
+    img: "img/milanesa2.jpg"
+  };
+  var miId6 = "6";
+
+  db.collection("productos").doc(miId6).set(data6);
+
+  var data7 = {
+    nombre: "ñoquis", precio: 800,
+    descripcion: "ñoqui con salsa mixta",
+    img: "img/ñoquis.jpg"
+  };
+  var miId7 = "7";
+
+  db.collection("productos").doc(miId7).set(data7);
+
+
+  var data8 = {
+    nombre: "guiso", precio: 800,
+    descripcion: "quiso de lentejas",
+    img: "img/guiso.jpg"
+  };
+  var miId8 = "8";
+
+  db.collection("productos").doc(miId8).set(data8);
+
+
+
+  var data9 = {
+    nombre: "pollo", precio: 800,
+    descripcion: "pollo con papas a la portuguesa",
+    img: "img/pollo.jpg"
+  };
+  var miId9 = "9";
+
+  db.collection("productos").doc(miId9).set(data9);
+
+
+
+  var data10 = {
+    nombre: "ensalada", precio: 500,
+    tipo: "vegano",
+    descripcion: "ensalada de tomate, lechuga, choclo, arroz y queso",
+    img: "img/ensalada.jpg"
+  };
+
+  var miId10 = "10";
+
+  db.collection("productosVeganos").doc(miId10).set(data10);
+
+
+
+  var data11 = {
+    nombre: "lasaña", precio: 500,
+    tipo: "vegano",
+    descripcion: "lasaña de espinaca con queso y jugo de tomate",
+    img: "img/lasaña.jpg",
+  };
+
+  var miId11 = "11";
+
+  db.collection("productosVeganos").doc(miId11).set(data11);
+
+
+
+  var data12 = {
+    nombre: "wook", precio: 500,
+    tipo: "vegano",
+    descripcion: "wook de verduras salteadas, cebolla, morron, zanahoria, berenjenas, brocoli",
+    img: "img/wook.jpg",
+  };
+
+  var miId12 = "12";
+
+  db.collection("productosVeganos").doc(miId12).set(data12);
 
 
 
@@ -446,4 +458,4 @@ db.collection("productosVeganos").doc(miId12).set(data12);
 
 
 
-  
+
